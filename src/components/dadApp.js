@@ -12,29 +12,15 @@ const styles = {
   card: {
     minWidth: 100
   },
-  pos: {
-    marginBottom: 12
-  },
-  textAlign: "center"
+  button: {
+    textAlign: "center"
+  }
 };
 
-function SimpleCard(props) {
+function DadJoke(props) {
   const { classes } = props;
   const [isFetching, setFetching] = useState(false);
   const [data, setData] = useState(null);
-
-  const fetchData = async () => {
-    const response = await fetch("https://icanhazdadjoke.com/", {
-      headers: { Accept: "application/json" }
-    });
-    if (!response.ok) {
-      throw new Error(response.status); // 404
-    }
-    const data = await response.json();
-    setFetching(false);
-    setData(data);
-    console.log(data.joke);
-  };
 
   useEffect(
     () => {
@@ -61,20 +47,21 @@ function SimpleCard(props) {
   return (
     <Card className={classes.card}>
       <CardContent>
-        <Typography component="h6" variant="h1" gutterBottom>
+        <Typography component="h5" variant="h4" gutterBottom>
           <div className={classes.textAlign}>{data && data.joke}</div>
         </Typography>
       </CardContent>
       <CardActions>
         <Button
-          variant="contained"
+          variant="extendedFab"
           color="primary"
           className={classes.button}
           size="large"
           onClick={() => setFetching(true)}
           disabled={isFetching}
         >
-          Dad Joke
+          {" "}
+          Joke{" "}
           {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
           <Icon className={classes.rightIcon}>send</Icon>
         </Button>
@@ -83,8 +70,8 @@ function SimpleCard(props) {
   );
 }
 
-SimpleCard.propTypes = {
+DadJoke.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SimpleCard);
+export default withStyles(styles)(DadJoke);
