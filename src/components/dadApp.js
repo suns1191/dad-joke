@@ -7,15 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
-
-const styles = {
-  card: {
-    minWidth: 100
-  },
-  button: {
-    textAlign: "center"
-  }
-};
+import styles from "../styles.css";
 
 function DadJoke(props) {
   const { classes } = props;
@@ -45,25 +37,28 @@ function DadJoke(props) {
   );
 
   return (
-    <Card className={classes.card}>
+    <Card className="card transition">
       <CardContent>
-        <Typography component="h5" variant="h4" gutterBottom>
-          <div className={classes.textAlign}>{data && data.joke}</div>
+        <Typography
+          component="h3"
+          variant="overline"
+          color="error"
+          align="center"
+          gutterBottom
+        >
+          {data && data.joke}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions className="cta">
         <Button
-          variant="extendedFab"
-          color="primary"
-          className={classes.button}
-          size="large"
+          variant="outlined"
+          color="default"
+          size="small"
           onClick={() => setFetching(true)}
           disabled={isFetching}
         >
           {" "}
-          Joke{" "}
-          {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-          <Icon className={classes.rightIcon}>send</Icon>
+          Dad Joke{" "}
         </Button>
       </CardActions>
     </Card>
